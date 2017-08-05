@@ -1,0 +1,102 @@
+#gh-comments {
+  font-size: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  * {
+    box-sizing: border-box;
+  }
+  > header {
+    padding: 15px 0;
+    border-bottom: 1px solid #d1d5da;
+  }
+  .leave-comment {
+    line-height: 26px;
+    float: right;
+    text-decoration: none;
+    color: #007ace;
+  }
+}
+
+.gh-c {
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow: auto;
+  margin-top: 20px;
+  > * {
+    float: left;
+  }
+  a {
+    color: #656565;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  img {
+    display: block;
+    width: 44px;
+    height: 44px;
+    border-radius: 3px;
+    margin-right: 16px;
+  }
+  article {
+    border: 1px solid #d1d5da;
+    width: calc(100% - 60px);
+    border-radius: 3px;
+    position: relative;
+  }
+  header {
+    border-radius: 3px 3px 0 0;
+    color: #777;
+    padding: 10px 15px;
+    background-color: #f6f8fa;
+    border-bottom: 1px solid #d1d5da;
+    &:before {
+      width: 10px;
+      height: 10px;
+      background: #f6f8fa;
+      border: 1px solid #d1d5da;
+      position: absolute;
+      content: "";
+      top: 14px;
+      left: -4px;
+      transform: rotate(45deg);
+      -webkit-clip-path: inset(4px 4px 0 0);
+      clip-path: inset(4px 4px 0 0);
+    }
+  }
+  main {
+    padding: 15px;
+    > *:first-child {
+      margin-top: 0 !important;
+    }
+    > *:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+  code {
+    padding: 1px 3px;
+    font-size: 85%;
+    background-color: #f3f3f3;
+    border-radius: 3px;
+  }
+  pre {
+    padding: 16px;
+    background-color: #f6f8fa;
+    border-radius: 3px;
+    overflow-x: auto;
+    code {
+      background: #f6f8fa;
+    }
+  }
+  blockquote {
+    margin: 15px 0;
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: 0.25em solid #dfe2e5;
+    > :first-child {
+      margin-top: 0;
+    }
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}
