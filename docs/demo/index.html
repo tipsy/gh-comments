@@ -3,29 +3,35 @@
         font-size: 18px;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
+
     #gh-comments * {
         box-sizing: border-box;
     }
+
     #gh-comments > header {
         padding: 15px 0;
         border-bottom: 1px solid #d1d5da;
     }
+
     #gh-comments .leave-comment {
         line-height: 26px;
         float: right;
         text-decoration: none;
         color: #007ace;
     }
+
     .gh-c {
         color: #333;
-        font-size: 14px; 
+        font-size: 14px;
         line-height: 1.5;
         overflow: auto;
         margin-top: 20px;
     }
+
     .gh-c > * {
         float: left;
     }
+
     .gh-c img {
         display: block;
         width: 44px;
@@ -33,12 +39,14 @@
         border-radius: 3px;
         margin-right: 16px;
     }
+
     .gh-c article {
         border: 1px solid #d1d5da;
         width: calc(100% - 60px);
         border-radius: 3px;
         position: relative;
     }
+
     .gh-c header {
         border-radius: 3px 3px 0 0;
         color: #777;
@@ -46,6 +54,7 @@
         background-color: #f6f8fa;
         border-bottom: 1px solid #d1d5da;
     }
+
     .gh-c header::before {
         width: 10px;
         height: 10px;
@@ -59,45 +68,55 @@
         -webkit-clip-path: inset(4px 4px 0 0);
         clip-path: inset(4px 4px 0 0);
     }
+
     .gh-c main {
         padding: 15px;
     }
-    .gh-c main>*:first-child {
+
+    .gh-c main > *:first-child {
         margin-top: 0 !important;
     }
-    .gh-c main>*:last-child {
+
+    .gh-c main > *:last-child {
         margin-bottom: 0 !important;
     }
+
     .gh-c a {
         color: #656565;
         text-decoration: none;
         font-weight: 700;
     }
+
     .gh-c code {
         padding: 1px 3px;
         font-size: 85%;
         background-color: #f3f3f3;
         border-radius: 3px;
     }
+
     .gh-c pre {
         padding: 16px;
         background-color: #f6f8fa;
         border-radius: 3px;
         overflow-x: auto;
     }
+
     .gh-c pre code {
         background: #f6f8fa;
     }
+
     .gh-c blockquote {
         margin: 15px 0;
         padding: 0 1em;
         color: #6a737d;
         border-left: 0.25em solid #dfe2e5;
     }
-    .gh-c blockquote>:first-child {
+
+    .gh-c blockquote > :first-child {
         margin-top: 0;
     }
-    gh-c blockquote>:last-child {
+
+    .gh-c blockquote > :last-child {
         margin-bottom: 0;
     }
 </style>
@@ -105,24 +124,24 @@
     function ghc(config) {
         let apiUrl = `https://api.github.com/repos/${config.user}/${config.repo}/issues/${config.commentIssue}/comments`;
         let webUrl = `https://github.com/${config.user}/${config.repo}/issues/${config.commentIssue}`;
+        let pluralize = length => length !== 1 ? "s" : "";
         let request = new XMLHttpRequest();
         request.open("GET", apiUrl, true);
         request.setRequestHeader("Accept", "application/vnd.github.v3.html+json");
-        request.onload = function() {
+        request.onload = function () {
             let commentArea = document.getElementById("gh-comments");
             if (request.status === 200) {
-                var comments = JSON.parse(request.responseText);
-                let pluraize = comments.length !== 1 ? "s" : "";
-                commentArea.insertAdjacentHTML("beforeEnd", 
+                let comments = JSON.parse(request.responseText);
+                commentArea.insertAdjacentHTML("beforeEnd",
                     `<header>
-                        ${comments.length} comment${pluraize} <small>(via GitHub) <a href="${webUrl}" class="leave-comment">Leave a comment</a></small>
-                    </header>` 
+                        ${comments.length} comment${pluralize(comments.length)} <small>(via GitHub) <a href="${webUrl}" class="leave-comment">Leave a comment</a></small>
+                    </header>`
                 );
                 comments.forEach(c => {
                     console.log(c);
                     let edited = c.created_at !== c.updated_at ? "• edited" : "";
-                    commentArea.insertAdjacentHTML("beforeEnd", 
-                     `<div class="gh-c">
+                    commentArea.insertAdjacentHTML("beforeEnd",
+                        `<div class="gh-c">
                         <img src="${c.user.avatar_url}">
                         <article>
                             <header>
@@ -133,21 +152,21 @@
                         </article>
                     </div>`
                     );
-                });
-          } else {
-            commentArea.insertAdjacentHTML("beforeEnd", "Failed to load comments");
-          }
+                })
+                ;
+            } else {
+                commentArea.insertAdjacentHTML("beforeEnd", "Failed to load comments");
+            }
         };
         request.send();
         function timeSince(dateString) {
-            var seconds = Math.floor((new Date() - new Date(dateString)) / 1000);
-            var s = [31536000, 2592000, 86400, 3600, 60, 1];
-            var p = ["year", "month", "day", "hour", "minute", "second"]
-            for(let i = 0; i < 6; i++) {
+            let seconds = Math.floor((new Date() - new Date(dateString)) / 1000);
+            let s = [31536000, 2592000, 86400, 3600, 60, 1];
+            let p = ["year", "month", "day", "hour", "minute", "second"];
+            for (let i = 0; i < 6; i++) {
                 let interval = Math.round(seconds / s[i]);
-                let pluraize = interval !== 1 ? "s" : "";
                 if (interval > 0) {
-                    return `${interval} ${p[i]}${pluraize} ago`;
+                    return `${interval} ${p[i]}${pluralize(interval)} ago`;
                 }
             }
         }
@@ -158,9 +177,9 @@
     <div id="gh-comments">
         <script>
             ghc({
-                "user" : "tipsy",
-                "repo" : "gh-comments",
-                "commentIssue" : 1
+                "user": "tipsy",
+                "repo": "gh-comments",
+                "commentIssue": 1
             });
         </script>
     </div>
