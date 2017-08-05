@@ -1,19 +1,25 @@
 ---
 ---
 
-// Headers
-$header-heading-color: #fff;
-$header-bg-color: #180271;
-$header-bg-color-secondary: #6c1599;
-
-// Text
-$section-headings-color: #6c1599 !default;
-$body-text-color: #4a5255 !default;
-$body-link-color: #1e6bb8 !default;
-$blockquote-text-color: #819198 !default;
+// https://github.com/pages-themes/cayman
 
 @import "{{ site.theme }}";
 
 .page-header {
     padding: 50px;
+    background-color: #1d0d5f;
+    background-image: linear-gradient(120deg, #1d0d5f, #5e0075)
+}
+
+.main-content h1, 
+.main-content h2, 
+.main-content h3, 
+.main-content h4, 
+.main-content h5, 
+.main-content h6 {
+    color: #1d0d5f;
+}
+
+a {
+    color: #731690;
 }
