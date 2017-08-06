@@ -1,37 +1,21 @@
-## Welcome to GitHub Pages
+# Add comments to any webpage
 
-You can use the [editor on GitHub](https://github.com/tipsy/gh-comments/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+Simply include the gh-comments JS/CSS files and call the plugin with your username, repo-name, and the issue number:
+```html
+<div id="gh-comments">
+    <script>
+      githubComments({
+        user: 'tipsy', 
+        repo: 'gh-comments', 
+        issueNr: 1
+      });
+  </script>
+</div>
 ```
+You need to create one issue per webpage you want to add comments to. All comments from the issue will be fetched and put into the `<div id="gh-comments"></div>` tag. By default, the comments are styled just like GitHub comments, but you can easily switch out the CSS.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## Limitations
+The plugin uses the official GitHub API, which has a rate-limit of 60 request per IP per hour, meaning that your users would have to reload the plugin more than 60 times in one hour in order to hit the rate-limit.
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/tipsy/gh-comments/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Browser support
+All the way down to IE9.
