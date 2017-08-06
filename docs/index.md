@@ -5,12 +5,12 @@ Simply include the gh-comments JS/CSS files and paste the following snippet wher
 ```html
 <div id="gh-comments">
     <script>
-      githubComments({
-        user: 'tipsy', // <- your github-username
-        repo: 'gh-comments', // <- your github-repo
-        issueNr: 1 // <- your issue number
-      });
-  </script>
+        githubComments({
+            user: 'tipsy', // your github-username
+            repo: 'gh-comments', // your github-repo
+            issueNr: 1 // your issue number
+        });
+    </script>
 </div>
 ```
 
