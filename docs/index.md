@@ -1,18 +1,23 @@
 # Add comments to any webpage
 
-Simply include the gh-comments JS/CSS files and call the plugin with your username, repo-name, and the issue number:
+## Installation and usage
+Simply include the gh-comments JS/CSS files and paste the following snippet where you want your comment section:
 ```html
 <div id="gh-comments">
     <script>
       githubComments({
-        user: 'tipsy', 
-        repo: 'gh-comments', 
-        issueNr: 1
+        user: 'tipsy', // <- your github-username
+        repo: 'gh-comments', // <- your github-repo
+        issueNr: 1 // <- your issue number
       });
   </script>
 </div>
 ```
-You need to create one issue per webpage you want to add comments to. All comments from the issue will be fetched and put into the `<div id="gh-comments"></div>` tag. By default, the comments are styled just like GitHub comments, but you can easily switch out the CSS.
+
+You need to create one issue per comments section. All comments from the issue will be fetched and put into the `<div id="gh-comments"></div>` tag. By default, the comments are styled just like GitHub comments, but you can easily switch out the CSS.
+
+### NPM
+...
 
 ## Limitations
 The plugin uses the official GitHub API, which has a rate-limit of 60 request per IP per hour, meaning that your users would have to reload the plugin more than 60 times in one hour in order to hit the rate-limit.
