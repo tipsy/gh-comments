@@ -32,7 +32,7 @@ gulp.task('css', () => {
         .pipe(plumber())
         .pipe(sass())
         .pipe(postcss([
-            autoprefixer({browsers: ['last 1 version']}),
+            autoprefixer({browsers: ['> 1%']}),
         ]))
         .pipe(cssmin())
         .pipe(gulp.dest('dist/css'))
