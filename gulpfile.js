@@ -1,6 +1,8 @@
+const autoprefixer = require('autoprefixer');
 const gulp = require('gulp');
 const uglify = require('gulp-uglify');
 const sass = require('gulp-sass');
+const postcss = require('gulp-postcss');
 const cssmin = require('gulp-cssmin');
 const del = require('del');
 const tap = require('gulp-tap');
@@ -17,7 +19,7 @@ gulp.task('javascript', () => {
             file.contents = browserify(file.path, {})
                 .transform(babelify, {presets: ['es2015']})
                 .bundle();
-            }))
+        }))
         .pipe(buffer())
         .pipe(uglify())
         .pipe(rename('gh-comments.js'))
@@ -29,6 +31,9 @@ gulp.task('css', () => {
     del('dist/css').then(() => gulp.src('src/sass/gh-comments.scss')
         .pipe(plumber())
         .pipe(sass())
+        .pipe(postcss([
+            autoprefixer({browsers: ['last 1 version']}),
+        ]))
         .pipe(cssmin())
         .pipe(gulp.dest('dist/css'))
     );
