@@ -1,16 +1,16 @@
 const autoprefixer = require('autoprefixer');
-const gulp = require('gulp');
-const uglify = require('gulp-uglify');
-const sass = require('gulp-sass');
-const postcss = require('gulp-postcss');
+const babelify = require('babelify');
+const browserify = require('browserify');
+const buffer = require('vinyl-buffer');
 const cssmin = require('gulp-cssmin');
 const del = require('del');
-const tap = require('gulp-tap');
-const browserify = require('browserify');
-const babelify = require('babelify');
-const buffer = require('vinyl-buffer');
-const rename = require('gulp-rename');
+const gulp = require('gulp');
 const plumber = require('gulp-plumber');
+const postcss = require('gulp-postcss');
+const rename = require('gulp-rename');
+const sass = require('gulp-sass');
+const tap = require('gulp-tap');
+const uglify = require('gulp-uglify');
 
 gulp.task('javascript', () => {
     del('dist/js').then(() => gulp.src('src/js/index.js')
