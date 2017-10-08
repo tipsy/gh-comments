@@ -24,6 +24,7 @@ gulp.task('javascript', () => {
         .pipe(uglify())
         .pipe(rename('gh-comments.js'))
         .pipe(gulp.dest('dist/js'))
+        .pipe(gulp.dest('docs/demo'))
     );
 });
 
@@ -36,6 +37,7 @@ gulp.task('css', () => {
         ]))
         .pipe(cssmin())
         .pipe(gulp.dest('dist/css'))
+        .pipe(gulp.dest('docs/demo'))
     );
 });
 
